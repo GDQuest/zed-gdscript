@@ -1,6 +1,6 @@
 {
   "name": "GDScript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": ["Mark Brand <mark@grndctrl.com>"],
   "description": "GDScript language support for Zed",
   "repository": "https://github.com/grndctrl/zed-gdscript"
