@@ -1,4 +1,10 @@
 .DS_Store
+
 gdscript.wasm
-test.gd
+extension.wasm
 grammars
+test.gd
+
+debug
+target
+Cargo.lock
