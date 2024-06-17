@@ -1,0 +1,8 @@
+name = "Godot Resource"
+grammar = "godot_resource"
+path_suffixes = ["gdextension", "godot", "import", "tres", "tscn"]
+line_comments = ["; ", ";; "]
+brackets = [
+    { start = "[", end = "]", close = true, newline = true },
+    { start = "(", end = ")", close = true, newline = true },
+]
