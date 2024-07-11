@@ -2,12 +2,9 @@ id = "gdscript"
 name = "GDScript"
 version = "0.2.0"
 schema_version = 1
-authors = [
-    "Mark Brand <mark@grndctrl.com>",
-    "Richard Taylor <moomerman@gmail.com>",
-]
+authors = ["Radu Gafita <radugaf@gmail.com>"]
 description = "GDScript language support for Zed"
-repository = "https://github.com/grndctrl/zed-gdscript"
+repository = "https://github.com/radu-relantin/zed-gdscript"
 
 [language_servers.gdscript]
 name = "GDScript Language Server"
