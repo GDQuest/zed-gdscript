@@ -13,9 +13,14 @@ impl zed::Extension for GDScriptExtension {
         _language_server_id: &LanguageServerId,
         worktree: &zed::Worktree,
     ) -> Result<zed::Command> {
-        let path = worktree
-            .which("nc")
-            .ok_or_else(|| "nc must be installed and available on your $PATH".to_string())?;
+        let nc_command = if cfg!(target_os = "windows") {
+            worktree.which("ncat").or_else(|| worktree.which("nc"))
+        } else {
+            worktree.which("nc").or_else(|| worktree.which("ncat"))
+        };
+
+        let path = nc_command
+            .ok_or_else(|| "nc or ncat must be installed and available on your PATH".to_string())?;
 
         Ok(zed::Command {
             command: path,
