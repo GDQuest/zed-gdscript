@@ -13,7 +13,8 @@ impl zed::Extension for GDScriptExtension {
         _language_server_id: &LanguageServerId,
         worktree: &zed::Worktree,
     ) -> Result<zed::Command> {
-        let nc_command = if cfg!(target_os = "windows") {
+        let (os, arch) = zed::current_platform();
+        let nc_command = if (os != zed::Os::Windows) {
             worktree.which("ncat").or_else(|| worktree.which("nc"))
         } else {
             worktree.which("nc").or_else(|| worktree.which("ncat"))
