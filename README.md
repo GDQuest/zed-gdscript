@@ -27,7 +27,7 @@ The Godot Language Server should be running separately. Here are the steps to se
 2. Go to Editor > Editor Settings > Text Editor > External
 3. Enable "Use External Editor"
 4. Set "Exec Path" to the path of your Zed executable
-5. Set "Exec Flags" to `{file}`
+5. Set "Exec Flags" to `{project} {file}:{line}:{col}`
 
 Then, to start the language server:
 
