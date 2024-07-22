@@ -1,10 +1,11 @@
 id = "gdscript"
 name = "GDScript"
-version = "0.3.1"
+version = "0.3.2"
 schema_version = 1
 authors = [
     "Mark Brand <mark@grndctrl.com>",
     "Richard Taylor <moomerman@gmail.com>",
+    "Radu Gafita <radugaf@gmail.com>"
 ]
 description = "GDScript language support for Zed"
 repository = "https://github.com/grndctrl/zed-gdscript"
@@ -15,8 +16,8 @@ language = "GDScript"
 
 [grammars.gdscript]
 repository = "https://github.com/PrestonKnopp/tree-sitter-gdscript"
-commit = "b5dea4d852db65f0872d849c24533eb121e03c76"
+commit = "1f1e782fe2600f50ae57b53876505b8282388d77"
 
 [grammars.godot_resource]
 repository = "https://github.com/PrestonKnopp/tree-sitter-godot-resource"
-commit = "b6ef0768711086a86b3297056f9ffb5cc1d77b4a"
+commit = "2ffb90de47417018651fc3b970e5f6b67214dc9d"
