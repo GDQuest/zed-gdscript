@@ -1,8 +1,3 @@
-## Looking for someone to take over
-
-Godot is just a hobby of mine, I am a webdev by trade. I like Zed, which is why I threw this together, but I don't know Rust to keep improving it.
-Since I became a father, time for hobbies is scarce. And I rather want to put it in the game, then use it to keep working on this extension.
-
 # Zed GDScript Extension
 
 This extension adds support for [GDScript](https://docs.godotengine.org/en/stable/classes/index.html), the scripting language used in the Godot game engine, to the Zed editor.
