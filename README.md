@@ -33,4 +33,16 @@ Then, to start the language server:
 
 ## Configuration
 
-This extension assumes the Godot Language Server is running on the default IP `127.0.0.1` and port `6005`. If you need to change these settings, you'll need to modify the extension code (for now...)
+This extension assumes the Godot Language Server is running on the default IP `127.0.0.1` and port `6005`. If you need to change these settings, put the following in your `settings.json`:
+
+```
+{
+  "lsp": {
+    "gdscript": {
+      "binary": {
+        "arguments": ["127.0.0.1", "6005"]
+      }
+    }
+  }
+}
+```
