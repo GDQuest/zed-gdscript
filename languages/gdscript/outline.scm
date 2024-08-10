@@ -10,6 +10,10 @@
     "const" @context
     name: (_) @name) @item
 
+(signal_statement
+    "signal" @context
+    (name) @name) @item
+
 ; Annotated variables use sibling nodes to store the annotation
 ; TODO: find a way to capture the annotation in the outline to distinguish
 ; annotated variables from regular variables
