@@ -19,6 +19,7 @@
 ; annotated variables from regular variables
 (_
   (annotation) @context
+  .
   (variable_statement
     "var" @context
     name: (_) @name
