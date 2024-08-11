@@ -2,14 +2,47 @@
     "class" @context
     name: (_) @name) @item
 
-(function_definition
-    "func" @context
-    name: (_) @name) @item
+; Only capture methods and static functions, not lambdas.
+(source
+    (function_definition
+        "func" @context
+        name: (_) @name) @item
+)
+(class_definition
+    (body
+        (function_definition
+            "func" @context
+            name: (_) @name) @item
+    )
+)
 
-(const_statement
-    "const" @context
-    name: (_) @name) @item
+; Only capture properties, not local variables.
+(source
+    (variable_statement
+        "var" @context
+        name: (_) @name
+    ) @item
+)
+(class_definition
+    (body
+        ( variable_statement
+            "var" @context
+            name: (_) @name) @item
+    )
+)
 
+(source
+    (const_statement
+        "const" @context
+        name: (_) @name) @item
+)
+(class_definition
+    (body
+        (const_statement
+            "const" @context
+            name: (_) @name) @item
+    )
+)
 (signal_statement
     "signal" @context
     (name) @name) @item
@@ -24,12 +57,6 @@
     name: (_) @name
   )
 ) @item
-
-(variable_statement
-    "var" @context
-    name: (_) @name
-) @item
-
 (enum_definition
     "enum" @context
     name: (_) @name) @item
