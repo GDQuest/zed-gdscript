@@ -24,6 +24,11 @@ The Godot Language Server should be running separately. Here are the steps to se
 4. Set "Exec Path" to the path of your Zed executable
 5. Set "Exec Flags" to `{project} {file}:{line}:{col}`
 
+If you have installed Godot and Zed via Flatpak on Linux, use the following parameters:
+
+1. Set "Exec Path" to `flatpak-spawn`
+2. Set "Exec Flags" to `--host flatpak run dev.zed.Zed {project} {file}:{line}:{col}`
+
 Then, to start the language server:
 
 1. Go to Editor > Editor Settings > Network > Language Server
@@ -52,3 +57,4 @@ You can change these settings by adding the following JSON configuration to your
     }
   }
 }
+```
