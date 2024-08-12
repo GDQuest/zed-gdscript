@@ -5,4 +5,5 @@ line_comments = ["# ", "## "]
 brackets = [
     { start = "[", end = "]", close = true, newline = true },
     { start = "(", end = ")", close = true, newline = true },
+    { start = "{", end = "}", close = true, newline = true },
 ]
