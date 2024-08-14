@@ -4,37 +4,43 @@ This extension adds support for [GDScript](https://docs.godotengine.org/en/stabl
 
 ## Requirements
 
-- Zed Editor
-- Godot Engine (version 3.x or 4.x)
-- `nc` (netcat) or `ncat` available in your system PATH
+- Zed Editor.
+- Godot Engine (version 3.x or 4.x).
+- The program `nc` or `ncat` is available in your system PATH.
 
-## Installation
+## How to install
 
-1. Install this extension in Zed (instructions specific to Zed's extension installation process)
-2. Ensure Godot is installed on your system
-3. Set up the Godot language server (see below)
+To get language server support in Godot, you will first need to install the Netcat program. Netcat is a small program that allows Zed and Godot to communicate with each other.
 
-## Setting Up the Godot Language Server
+### Installing Netcat
 
-The Godot Language Server should be running separately. Here are the steps to set it up:
+You can install Netcat from your package manager:
 
-1. Open your Godot project
-2. Go to Editor > Editor Settings > Text Editor > External
-3. Enable "Use External Editor"
-4. Set "Exec Path" to the path of your Zed executable
-5. Set "Exec Flags" to `{project} {file}:{line}:{col}`
+- On Ubuntu/Debian Linux: `sudo apt install netcat`.
+- On Fedora Linux: `sudo dnf install nmap-ncat`.
+- On macOS: `brew install netcat`.
+
+### Installing the Zed GDScript Extension
+
+1. Open Zed.
+2. Go to Extensions.
+3. Search for *GDScript*.
+4. Click Install.
+
+### Starting the Godot Language Server
+
+Unlike other programming languages, Godot's language server is part of the Godot editor. Godot uses the context of your project and scene files to provide auto-completion and project-specific error checks. So, to get the full experience of the Godot language server, you need to open your project in Godot.
+
+After opening Godot, in Zed, you can use the command *editor: restart language server* to connect to Godot's language server.
+
+### Opening GDScript files in Zed instead of Godot
+
+If you want to open GDScript files in Zed instead of Godot, you need to change Godot editor settings. In the Godot editor, go to *Editor > Editor Settings > Text Editor > External* and enable *Use External Editor*. Set the *Exec Path* to the path of your Zed executable and the *Exec Flags* to `{project} {file}:{line}:{col}`. This will open files and jump to the correct line in Zed when you click on an error or warning in Godot.
 
 If you have installed Godot and Zed via Flatpak on Linux, use the following parameters:
 
-1. Set "Exec Path" to `flatpak-spawn`
-2. Set "Exec Flags" to `--host flatpak run dev.zed.Zed {project} {file}:{line}:{col}`
-
-Then, to start the language server:
-
-1. Go to Editor > Editor Settings > Network > Language Server
-2. Set "Remote Host" to `127.0.0.1`
-3. Set "Remote Port" to `6005`
-4. Restart Godot
+1. Set "Exec Path" to `flatpak-spawn`.
+2. Set "Exec Flags" to `--host flatpak run dev.zed.Zed {project} {file}:{line}:{col}`.
 
 ## Configuration
 
@@ -45,7 +51,7 @@ By default, the extension matches the default settings of the Godot editor to co
 - Remote Host: 127.0.0.1
 - Remote Port: 6005
 
-You can change these settings by adding the following JSON configuration to your `settings.json` file:
+You can change these settings in Godot by going to *Editor > Editor Settings > Network > Language Server*. If you do that, you'll need to change the settings in Zed to match. You can change these settings by adding the following JSON configuration to your `settings.json` file:
 
 ```json
 {
