@@ -7,7 +7,7 @@ license = "MIT"
 
 [lib]
 path = "src/gdscript.rs"
-crate-type = [ "cdylib",]
+crate-type = ["cdylib"]
 
 [dependencies]
-zed_extension_api = "0.0.6"
+zed_extension_api = "0.6.0"

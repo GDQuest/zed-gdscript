@@ -2,7 +2,12 @@ id = "gdscript"
 name = "GDScript"
 version = "0.5.0"
 schema_version = 1
-authors = [ "Mark Brand <mark@grndctrl.com>", "Richard Taylor <moomerman@gmail.com>", "Radu Gafita <radugaf@gmail.com>", "Nathan Lovato <nathan@gdquest.com>",]
+authors = [
+    "Mark Brand <mark@grndctrl.com>",
+    "Richard Taylor <moomerman@gmail.com>",
+    "Radu Gafita <radugaf@gmail.com>",
+    "Nathan Lovato <nathan@gdquest.com>",
+]
 description = "Godot game engine support for Zed. Adds support for GDScript, Godot Resources (.tres, .tscn), and GDShader files."
 repository = "https://github.com/grndctrl/zed-gdscript"
 
@@ -21,3 +26,5 @@ commit = "2ffb90de47417018651fc3b970e5f6b67214dc9d"
 [grammars.gdshader]
 repository = "https://github.com/GodOfAvacyn/tree-sitter-gdshader"
 commit = "ffd9f958df13cae04593781d7d2562295a872455"
+
+[debug_adapters.godot]

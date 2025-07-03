@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "properties": {
+    "request": {
+      "type": "string",
+      "enum": ["launch", "attach"],
+      "default": "launch"
+    },
+    "project": {
+      "type": "string",
+      "description": "Path to the Godot project"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["host", "android", "web"],
+      "description": "Platform that the project will run on",
+      "default": "host"
+    },
+    "device": {
+      "type": "integer",
+      "description": "Android device ID"
+    },
+    "host": {
+      "type": "string",
+      "default": "127.0.0.1"
+    },
+    "port": {
+      "type": "integer",
+      "default": 6006
+    }
+  },
+  "required": ["request"]
+}

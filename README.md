@@ -82,6 +82,32 @@ Optionally, if you have [`godot-gdscript-toolkit`](https://github.com/Scony/godo
 }
 ```
 
+## Debugging
+
+> [!NOTE]
+> At the time of writing this, debugging will not work when using Godot 4.4. It's confirmed to work in Godot 4.3 and 4.5, however.
+
+The extension provides a debug adapter that allows debugging GDScript code. To be able to do this, create `.zed/debug.json` file in the root of your workspace with the following content:
+
+```json
+[
+  {
+    "adapter": "godot",
+    "label": "Godot (Launch)",
+    "request": "launch"
+  },
+  {
+    "adapter": "godot",
+    "label": "Godot (Attach)",
+    "request": "attach"
+  }
+]
+```
+
+This will add 2 debug tasks: `Godot (Launch)` will launch a new debugging session, while `Godot (Attach)` will try to attach to an existing one. To run these tasks, press `F4`, then select the desired task from the menu.
+
+Complete list of options can be found in [`debug_adapter_schemas/godot.json`](debug_adapter_schemas/godot.json). Zed will also suggest possible options through autocompletion when editing the `debug.json` file.
+
 ## Contributing
 
 ## Editing .scm files

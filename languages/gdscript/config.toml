@@ -13,3 +13,4 @@ auto_indent_using_last_non_empty_line = false
 increase_indent_pattern = ":\\s*$"
 autoclose_before = ":.,}])>"
 hard_tabs = true
+debuggers = ["godot"]
