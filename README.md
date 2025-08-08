@@ -65,6 +65,23 @@ You can change these settings in Godot by going to *Editor > Editor Settings > N
 }
 ```
 
+Optionally, if you have [`godot-gdscript-toolkit`](https://github.com/Scony/godot-gdscript-toolkit) installed, you can use `gdformat` to format GDScript files:
+
+```json
+{
+  "languages": {
+    "GDScript": {
+      "formatter": {
+        "external": {
+          "command": "gdformat",
+          "arguments": ["-"]
+        }
+      }
+    }
+  }
+}
+```
+
 ## Contributing
 
 ## Editing .scm files
