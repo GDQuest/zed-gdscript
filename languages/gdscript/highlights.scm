@@ -13,9 +13,9 @@
 
 (function_definition
   name: (name) @function
-  parameters: (parameters) @variable)
+  parameters: (parameters) @variable.parameter)
 (constructor_definition "_init" @function)
-(lambda (parameters) @variable)
+(lambda (parameters) @variable.parameter)
 
 
 ;; Literals
@@ -26,12 +26,24 @@
   (region_start)
   (region_end)
 ] @comment.doc
+
+; Critical comment
+((comment) @error
+    (#match? @error "\\b(ALERT|ATTENTION|CAUTION|CRITICAL|DANGER|SECURITY)\\b"))
+
+; Warning comment
+((comment) @warning
+    (#match? @warning "\\b(BUG|DEPRECATED|FIXME|HACK|TASK|TBD|TODO|WARNING)\\b"))
+
+; Info comment
+((comment) @info
+    (#match? @info "\\b(INFO|NOTE|NOTICE|TEST|TESTING)\\b"))
+
 (string) @string
 
 (type) @type
 (enum_definition (name) @type)
 (enumerator (identifier) @variant)
-(null) @type
 
 (variable_statement (identifier) @variable)
 (attribute
@@ -57,9 +69,14 @@
 
 (escape_sequence) @string.escape
 [
+  "PI"
+  "TAU"
+  "NAN"
+  "INF"
+  (null)
   (true)
   (false)
-] @boolean
+] @constant.builtin
 
 [
   "+"
@@ -100,12 +117,19 @@
 ; Keywords
 (annotation (identifier) @keyword)
 
+; Storage
 [
-  (remote_keyword)
-  (static_keyword)
-  (breakpoint_statement)
-] @keyword
+  "var"
+  "const"
+  "signal"
+  "enum"
+  "static"
+] @keyword.storage
 
+; Function
+"func" @keyword.function
+
+; Action
 [
   "if"
   "else"
@@ -114,29 +138,46 @@
   "while"
   "for"
   "return"
-  "pass"
   "break"
   "continue"
-  "func"
-  "in"
-  "is"
-  "as"
+  "await"
+  "pass"
+  "breakpoint"
+  "yield"
+] @keyword.control
+
+; Operator
+[
   "and"
   "or"
   "not"
-  "var"
-  "class"
-  "class_name"
-  "enum"
-  "const"
-  "signal"
+  "in"
+  "is"
+  "as"
+] @keyword.operator
+
+; Attribute
+[
   "@"
-  "setget"
+  "export"
   "onready"
-  "extends"
+  "tool"
+  "setget"
   "set"
   "get"
-  "await"
+] @attribute
+
+; Import
+[
+  "preload"
+  "load"
+] @keyword.import
+
+; Remaining Keywords
+[
+  "class"
+  "class_name"
+  "extends"
 ] @keyword
 
 ((identifier) @keyword
