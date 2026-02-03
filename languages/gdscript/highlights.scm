@@ -5,14 +5,14 @@
 
 ; Function calls
 
-(attribute_call (identifier) @function)
-(base_call (identifier) @function)
+(attribute_call (identifier) @function.method)
+(base_call (identifier) @function.builtin)
 (call (identifier) @function)
 
 ; Function definitions
 
 (function_definition
-  name: (name) @function
+  name: (name) @function.definition
   parameters: (parameters) @variable.parameter)
 (constructor_definition "_init" @function)
 (lambda (parameters) @variable.parameter)
@@ -25,7 +25,7 @@
 [
   (region_start)
   (region_end)
-] @comment.doc
+] @tag
 
 ; Critical comment
 ((comment) @error
@@ -68,11 +68,10 @@
 ] @number
 
 (escape_sequence) @string.escape
+
+((identifier) @constant.builtin
+    (#match? @constant.builtin "^(PI|TAU|NAN|INF)$"))
 [
-  "PI"
-  "TAU"
-  "NAN"
-  "INF"
   (null)
   (true)
   (false)
@@ -115,7 +114,9 @@
 ] @operator
 
 ; Keywords
-(annotation (identifier) @keyword)
+
+; Annotations
+(annotation (identifier) @attribute)
 
 ; Storage
 [
@@ -123,7 +124,7 @@
   "const"
   "signal"
   "enum"
-  "static"
+  (static_keyword)
 ] @keyword.storage
 
 ; Function
@@ -142,8 +143,7 @@
   "continue"
   "await"
   "pass"
-  "breakpoint"
-  "yield"
+  (breakpoint_statement)
 ] @keyword.control
 
 ; Operator
@@ -159,19 +159,16 @@
 ; Attribute
 [
   "@"
-  "export"
-  "onready"
-  "tool"
+  ; "export" covered in Annotations above (@ followed by anything)
+  ; "onready"
   "setget"
   "set"
   "get"
 ] @attribute
 
 ; Import
-[
-  "preload"
-  "load"
-] @keyword.import
+((identifier) @keyword.import
+    (#match? @keyword.import "^(load|preload)$"))
 
 ; Remaining Keywords
 [
