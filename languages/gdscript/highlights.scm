@@ -1,3 +1,10 @@
+; Any uncovered text,
+; var a = 10 has 'a' matching @variable
+; but a = 10 has 'a matching nothing.
+; This is to keep consistency, and is like 'text_editor/theme/highlighting/text_color' in Godot Editor Settings
+(identifier) @variable
+
+
 ; Class
 (class_name_statement (name) @type)
 (class_definition (name) @type)
@@ -41,11 +48,19 @@
 
 (string) @string
 
+; currently no differentiation between built-in types (int, Vector2), and custom ones (with class_name)
 (type) @type
 (enum_definition (name) @type)
 (enumerator (identifier) @variant)
 
-(variable_statement (identifier) @variable)
+; Catch the name in a 'var' declaration
+(variable_statement
+  name: (name) @variable)
+
+; Catch the name in a 'var' declaration with a type hint (like dirs: Dictionary)
+(variable_statement
+  name: (name) @variable
+  type: (type))
 (attribute
   (identifier)
   (identifier) @property)
@@ -53,11 +68,9 @@
 ((identifier) @type
   (#match? @type "^(bool|float|int)$"))
 
-[
-  (string_name)
-  (node_path)
-  (get_node)
-] @label
+(string_name) @string.special.symbol
+(node_path) @string.special.path
+(get_node) @string.special
 (signal_statement (name) @label)
 
 (const_statement (name) @constant)
@@ -111,6 +124,7 @@
   "<<="
   ">>="
   "**="
+  ":" ; for consistency (to make :type= same as :=)
 ] @operator
 
 ; Keywords
@@ -177,8 +191,8 @@
   "extends"
 ] @keyword
 
-((identifier) @keyword
-  (#match? @keyword "^(self|super)$"))
+((identifier) @variable.language
+  (#match? @variable.language "^(self|super)$"))
 
 ; Identifier naming conventions
 ; This needs to be at the very end in order to override earlier queries
