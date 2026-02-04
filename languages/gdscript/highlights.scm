@@ -11,19 +11,24 @@
 
 
 ; Function calls
-
 (attribute_call (identifier) @function.method)
 (base_call (identifier) @function.builtin)
 (call (identifier) @function)
 
 ; Function definitions
-
 (function_definition
-  name: (name) @function.definition
-  parameters: (parameters) @variable.parameter)
-(constructor_definition "_init" @function)
-(lambda (parameters) @variable.parameter)
-
+  name: (name) @function.definition)
+; Constructor definition
+(function_definition
+    name: (name) @constructor
+    (#eq? @constructor "_init"))
+; Untyped function parameter defintiion: a in func foo(a)
+(parameters (identifier) @variable.parameter)
+; Typed function parameter defition: b in func foo(b: int)
+(parameters
+  (typed_parameter
+    . (identifier) @variable.parameter))
+; both of the above work with lambdas too!
 
 ;; Literals
 (comment) @comment
