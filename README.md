@@ -67,7 +67,40 @@ You can change these settings in Godot by going to *Editor > Editor Settings > N
 }
 ```
 
-Optionally, if you have [`godot-gdscript-toolkit`](https://github.com/Scony/godot-gdscript-toolkit) installed, you can use `gdformat` to format GDScript files:
+## Formatting
+
+Zed provides the ability to format files using an external formatter. There are a few options for GDScript formatting.
+
+### With [GDScript formatter](https://github.com/GDQuest/GDScript-formatter)
+
+[GDScript formatter](https://github.com/GDQuest/GDScript-formatter) is a fast code formatter and linter that is built with the same [tree-sitter-gdscript](https://github.com/PrestonKnopp/tree-sitter-gdscript) grammar that this extension uses.
+
+Install it and make sure that `gdscript-formatter` is available in your system PATH.
+
+Then, add the following configuration to your `settings.json` file:
+
+```json
+{
+  "languages": {
+    "GDScript": {
+      "formatter": {
+        "external": {
+          "command": "gdscript-formatter",
+          "arguments": []
+        }
+      }
+    }
+  }
+}
+```
+
+### With [GDScript Toolkit](https://github.com/Scony/godot-gdscript-toolkit)
+
+[GDScript Toolkit](https://github.com/Scony/godot-gdscript-toolkit) is a Python-based formatter and linter for GDScript.
+
+Install it and make sure that `gdformat` is available in your system PATH.
+
+Then, add the following configuration to your `settings.json` file:
 
 ```json
 {
