@@ -76,7 +76,7 @@
 (string_name) @string.special.symbol
 (node_path) @string.special.path
 (get_node) @string.special
-(signal_statement (name) @label)
+(signal_statement (name) @variable.special)
 
 (const_statement (name) @constant)
 
