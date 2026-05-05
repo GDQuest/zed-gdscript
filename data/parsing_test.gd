@@ -9,3 +9,8 @@ func _init() -> void:
 func _process(delta: float) -> void:
 	position += velocity * delta
 	rotation = velocity.angle()
+
+
+class InnerClass extends RefCounted:
+	func _init(arg: int) -> void:
+		pass

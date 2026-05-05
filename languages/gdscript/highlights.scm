@@ -18,13 +18,16 @@
 ; Function definitions
 (function_definition
   name: (name) @function.definition)
-; Constructor definition
+; Constructor definition (tree-sitter doesn't return a name capture for it)
+(constructor_definition
+    "_init" @constructor)
+; Constructor definition fallback (when tree-sitter doesn't report it correctly, e.g. in inner classes).
 (function_definition
     name: (name) @constructor
     (#eq? @constructor "_init"))
-; Untyped function parameter defintiion: a in func foo(a)
+; Untyped function parameter definition: a in func foo(a)
 (parameters (identifier) @variable.parameter)
-; Typed function parameter defition: b in func foo(b: int)
+; Typed function parameter definition: b in func foo(b: int)
 (parameters
   (typed_parameter
     . (identifier) @variable.parameter))
