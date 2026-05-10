@@ -152,7 +152,7 @@
 ; Function
 "func" @keyword.function
 
-; Action
+; Control flow
 [
   "if"
   "else"

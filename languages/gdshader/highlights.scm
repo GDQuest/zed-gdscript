@@ -3,22 +3,34 @@
 
 ; Keywords
 [
-  "render_mode"
   "shader_type"
+  "render_mode"
   "group_uniforms"
+  "uniform"
+  "varying"
   "global"
   "instance"
   "const"
-  "varying"
-  "uniform"
-  ; type
   "struct"
-  ; modifiers
+] @keyword
+
+[
+  (shader_type)
+  (render_mode)
+  (hint_name)
+] @attribute
+
+; Modifiers
+[
   "in"
   "out"
   "inout"
   (precision_qualifier)
   (interpolation_qualifier)
+] @keyword.modifier
+
+; Control flow
+[
   ; repeat
   "while"
   "for"
@@ -32,11 +44,9 @@
   "switch"
   "case"
   "default"
-  ; directive
-  "#"
-  "include"
-] @keyword
+] @keyword.control
 
+; Operators
 [
   "="
   "+="
@@ -65,13 +75,54 @@
   "--"
 ] @operator
 
-; Types
-(boolean) @boolean
-[
-  (integer)
-  (float)
-] @number
-(string) @string
+; Preprocessor
+; Preprocessor words cannot be targetted completely because the parser
+; errs around many of them, or just doesn't recognize them as valid nodes.
+; Related to that, we can also not match "defined" well, since it detects
+; as a function call (in an invalid context).
+; Also not that the "#" symbol is NOT a part of the node, it's a separate
+; node even when matched correctly. E.g. `#include` parsed into "#" and
+; "include".
+(
+  "#" @keyword.preproc @preproc
+  . ; Direct siblings only.
+  [
+    ;"define"
+    ;"undef"
+    ;"ifdef"
+    ;"ifndef"
+    "if"
+    "elif"
+    "else"
+    ;"endif"
+    ;"error"
+    "include"
+    ;"pragma"
+  ] @keyword.preproc @preproc)
+; Explicitly match inside errors, because they don't match above.
+(ERROR
+  (
+    "#" @keyword.preproc @preproc
+    . ; Direct siblings only.
+    [
+        ;"define"
+        ;"undef"
+        ;"ifdef"
+        ;"ifndef"
+        "if"
+        "elif"
+        "else"
+        ;"endif"
+        ;"error"
+        "include"
+        ;"pragma"
+    ] @keyword.preproc @preproc))
+
+;"defined" @keyword.preproc @preproc
+
+; As a temporary solution we highlight "#" individually, so there is at
+; least something.
+"#" @keyword.preproc @preproc
 
 ; Delimiters
 [
@@ -89,24 +140,31 @@
   "}"
 ] @punctuation.bracket
 
+; Comments
+(comment) @comment
+
+; Built-in types
+(boolean) @boolean
 [
-  (builtin_type)
-  (ident_type)
-] @type
+  (integer)
+  (float)
+] @number
+(string) @string
 
-[
-  (shader_type)
-  (render_mode)
-  (hint_name)
-] @attribute
+(builtin_type) @type.builtin
+(builtin_variable) @constant.builtin
+(builtin_function) @function.builtin
 
-(builtin_variable) @constant
+; User declarations
 
-(builtin_function) @function
+(ident) @variable
+(ident_type) @type
 
 (group_uniforms_declaration
-  group_name: (ident) @property
-  subgroup_name: (ident) @property)
+  group_name: (ident) @attribute)
+(group_uniforms_declaration
+  group_name: (ident) @attribute
+  subgroup_name: (ident) @attribute)
 
 (struct_declaration
   name: (ident) @type)
@@ -114,22 +172,28 @@
 (struct_member
   name: (ident) @property)
 
+(const_declaration
+  specifier: (var_specifier
+    name: (ident) @constant))
+(uniform_declaration
+  specifier: (var_specifier
+    name: (ident) @property))
+(varying_declaration
+  specifier: (var_specifier
+    name: (ident) @property))
+
 (function_declaration
   name: (ident) @function)
 
 (parameter
-  name: (ident) @variable.special)
+  name: (ident) @variable.parameter)
 
 (member_expr
   member: (ident) @property)
 
 (call_expr
-  function: [
-    (ident)
-    (builtin_type)
-  ] @function)
+  function: (ident) @function)
 
+; Not actually a function call, but rather a type constructor/literal.
 (call_expr
-  function: (builtin_type) @function)
-
-(comment) @comment
+  function: (builtin_type) @type.builtin)
