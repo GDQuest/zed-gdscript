@@ -15,6 +15,12 @@
 (base_call (identifier) @function.builtin)
 (call (identifier) @function)
 
+; Setget
+(setget
+    get: (getter) @function.method)
+(setget
+    set: (setter) @function.method)
+
 ; Function definitions
 (function_definition
   name: (name) @function.definition)
@@ -134,6 +140,22 @@
   "**="
   ":" ; for consistency (to make :type= same as :=)
 ] @operator
+
+; Delimiters
+[
+  "."
+  ","
+  ";"
+] @punctuation.delimiter
+
+[
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+] @punctuation.bracket
 
 ; Keywords
 
