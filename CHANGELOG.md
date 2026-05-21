@@ -2,13 +2,32 @@
 
 This file documents the changes made to the formatter with each release. This project uses [semantic versioning](https://semver.org/spec/v2.0.0.html).
 
+## Release 0.9.0 (2026-05-21)
+
+This release improves syntax highlighting in both GDScript and Godot shaders. Thanks to @YuriSizov for all the contributions!
+
+### Added
+
+- Highlight setget methods and punctuation in GDScript
+- Improve highlighting for Godot shaders
+
+### Changed
+
+- Rewrite and expand contributing docs for Scheme files 
+
+### Fixed
+
+- Fix highlighting for GDScript constructors 
+
 ## Release 0.8.0 (2026-04-11)
+
+This release improves GDScript syntax highlighting and adds many options for customizing the highlighting. Thanks much to @Fuzzycc for the help.
 
 ### Added
 
 - Add `.gdshaderinc` file extension support to the GDShader grammar
 - Add `playArgs` and `scene` properties to the DAP schema
-- Improve GDScript syntax highlighting, add customization options and support for more detailed community themes (thanks @Fuzzycc)
+- Improve GDScript syntax highlighting, add customization options and support for more detailed community themes
 
 ### Changed
 
