@@ -10,7 +10,7 @@ edition = "2021"
 license = "MIT"
 name = "zed_gdscript"
 publish = false
-version = "0.8.0"
+version = "0.9.0"
 
 [profile.release]
 strip = true
