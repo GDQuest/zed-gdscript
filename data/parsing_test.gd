@@ -15,11 +15,19 @@ var setget_property: float = 3.2:
 
 
 func _init() -> void:
-	pass
+	super()
+	super.other()
+	self.property.x = 20
+	method_call(self)
+
 
 func _process(delta: float) -> void:
 	position += velocity * delta
 	rotation = velocity.angle()
+
+
+func _not_implemented() -> void:
+	pass
 
 
 class InnerClass extends RefCounted:

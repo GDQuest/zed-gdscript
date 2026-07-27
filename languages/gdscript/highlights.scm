@@ -3,6 +3,9 @@
 ; but a = 10 has 'a matching nothing.
 ; This is to keep consistency, and is like 'text_editor/theme/highlighting/text_color' in Godot Editor Settings
 (identifier) @variable
+; Self reference in class.
+((identifier) @variable.builtin
+  (#eq? @variable.builtin "self"))
 
 
 ; Class
@@ -12,8 +15,16 @@
 
 ; Function calls
 (attribute_call (identifier) @function.method)
-(base_call (identifier) @function.builtin)
+(base_call (identifier) @function.method)
 (call (identifier) @function)
+; Super calls have two forms:
+; - super() to call this method's parent implementation,
+; - super.other() to call another method's parent implementation.
+((identifier) @function.builtin
+    (#eq? @function.builtin "super"))
+(call (identifier) @function.builtin
+    (#eq? @function.builtin "super"))
+
 
 ; Setget
 (setget
@@ -220,9 +231,6 @@
   "class_name"
   "extends"
 ] @keyword
-
-((identifier) @variable.language
-  (#match? @variable.language "^(self|super)$"))
 
 ; Identifier naming conventions
 ; This needs to be at the very end in order to override earlier queries
