@@ -19,6 +19,10 @@ You can install Netcat from your package manager:
 - On Ubuntu/Debian Linux: `sudo apt install netcat`.
 - On Fedora Linux: `sudo dnf install nmap-ncat`.
 - On macOS: `brew install netcat`.
+- On Windows, Netcat is integrated with [NMap](https://nmap.org/download#windows). To install it:
+  1. Download and run the latest stable release self-installer
+  2. Ensure Nmap Core files, Register Nmap Path, Npcap and Ncat are selected from the list of options
+  3. When prompted, accept and install Npcap
 
 Note that the installed program might be called `nc` or `ncat`, depending on your operating system and package manager (short for netcat). The extension will try to find either of them in your system PATH.
 
