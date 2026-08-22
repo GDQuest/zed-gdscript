@@ -191,6 +191,7 @@
   "else"
   "elif"
   "match"
+  "when"
   "while"
   "for"
   "return"
@@ -199,7 +200,7 @@
   "await"
   "pass"
   (breakpoint_statement)
-] @keyword.control
+] @keyword @keyword.control
 
 ; Operator
 [
